@@ -10,6 +10,7 @@
 .calculator__wrapper {
   margin-inline: 8%;
   display: grid;
+  margin-bottom: 8%;
 
   h4,
   .calculator__batch-size {

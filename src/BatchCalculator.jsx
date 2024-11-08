@@ -59,6 +59,7 @@ export default function BatchCalculator({ recipe }) {
                   <TextField
                     value={ingredient.name}
                     size="small"
+                    disabled={recipe}
                     onChange={(e) =>
                       handleIngredientChange(index, "name", e.target.value)
                     }
@@ -71,6 +72,7 @@ export default function BatchCalculator({ recipe }) {
                   <TextField
                     type="number"
                     size="small"
+                    disabled={recipe}
                     value={ingredient.amount}
                     onChange={(e) =>
                       handleIngredientChange(
@@ -86,6 +88,7 @@ export default function BatchCalculator({ recipe }) {
                   className="calculator__table__ingredient-unit">
                   <TextField
                     value={ingredient.unit}
+                    disabled={recipe}
                     onChange={(e) =>
                       handleIngredientChange(index, "unit", e.target.value)
                     }
@@ -102,9 +105,11 @@ export default function BatchCalculator({ recipe }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button variant="contained" color="primary" onClick={addIngredient}>
-        Add Ingredient
-      </Button>
+      {!recipe && (
+        <Button variant="contained" color="primary" onClick={addIngredient}>
+          Add Ingredient
+        </Button>
+      )}
     </div>
   );
 }
