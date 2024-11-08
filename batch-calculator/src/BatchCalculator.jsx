@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,17 +8,19 @@ import {
   TableRow,
   Paper,
   TextField,
-  Typography,
   Button,
 } from "@mui/material";
 
-export default function BatchCalculator() {
-  const [ingredients, setIngredients] = useState([
-    { name: "Flour", amount: 100, unit: "g" },
-    { name: "Sugar", amount: 50, unit: "g" },
-    { name: "Butter", amount: 75, unit: "g" },
-  ]);
+export default function BatchCalculator({ recipe }) {
+  const [ingredients, setIngredients] = useState([]);
   const [batchSize, setBatchSize] = useState(1);
+
+  useEffect(() => {
+    if (recipe) {
+      console.log(recipe);
+      setIngredients(recipe.ingredients);
+    }
+  }, [recipe]);
 
   const handleIngredientChange = (index, field, value) => {
     const newIngredients = [...ingredients];
@@ -31,9 +33,7 @@ export default function BatchCalculator() {
 
   return (
     <div className="calculator__wrapper">
-      <Typography variant="h4" gutterBottom>
-        Recipe Batch Calculator
-      </Typography>
+      {recipe && <h4>yield per batch: {recipe.batchYield}</h4>}
       <TextField
         label="Batch Size"
         type="number"
@@ -43,7 +43,7 @@ export default function BatchCalculator() {
         className="calculator__batch-size"
       />
       <TableContainer component={Paper} className="calculator__table">
-        <Table>
+        <Table size="small">
           <TableHead className="calculator__table-header">
             <TableRow>
               <TableCell>Ingredient</TableCell>
@@ -54,18 +54,23 @@ export default function BatchCalculator() {
           </TableHead>
           <TableBody>
             {ingredients.map((ingredient, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} size="small">
                 <TableCell>
                   <TextField
                     value={ingredient.name}
+                    size="small"
                     onChange={(e) =>
                       handleIngredientChange(index, "name", e.target.value)
                     }
                   />
                 </TableCell>
-                <TableCell align="right">
+                <TableCell
+                  align="right"
+                  size="small"
+                  className="calculator__table__ingredient-amount">
                   <TextField
                     type="number"
+                    size="small"
                     value={ingredient.amount}
                     onChange={(e) =>
                       handleIngredientChange(
@@ -76,15 +81,20 @@ export default function BatchCalculator() {
                     }
                   />
                 </TableCell>
-                <TableCell>
+                <TableCell
+                  size="small"
+                  className="calculator__table__ingredient-unit">
                   <TextField
                     value={ingredient.unit}
                     onChange={(e) =>
                       handleIngredientChange(index, "unit", e.target.value)
                     }
+                    size="small"
                   />
                 </TableCell>
-                <TableCell align="right">
+                <TableCell
+                  align="right"
+                  className="calculator__table__batch-amount">
                   {ingredient.amount * batchSize} {ingredient.unit}
                 </TableCell>
               </TableRow>
@@ -92,11 +102,7 @@ export default function BatchCalculator() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={addIngredient}
-        style={{ marginTop: "20px" }}>
+      <Button variant="contained" color="primary" onClick={addIngredient}>
         Add Ingredient
       </Button>
     </div>
