@@ -1,0 +1,42 @@
+{
+  "xmasPunch": {
+    "batchYield": "1L",
+    "ingredients": [
+      {
+        "name": "Earl Grey",
+        "amount": 8,
+        "unit": "tea bags"
+      },
+      {
+        "name": "Granulated sugar",
+        "amount": 85,
+        "unit": "g"
+      },
+      {
+        "name": "Ruby port",
+        "amount": 237,
+        "unit": "ml"
+      },
+      {
+        "name": "Aged dark rum",
+        "amount": 118,
+        "unit": "ml"
+      },
+      {
+        "name": "Allspice dram",
+        "amount": 60,
+        "unit": "ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "amount": 60,
+        "unit": "ml"
+      },
+      {
+        "name": "Whole milk",
+        "amount": 237,
+        "unit": "ml"
+      }
+    ]
+  }
+}
