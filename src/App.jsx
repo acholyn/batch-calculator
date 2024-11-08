@@ -9,7 +9,7 @@ export default function App() {
 
   useEffect(() => {
     console.log("getting recipes");
-    fetch("/recipes.json")
+    fetch("/batch-calculator/recipes.json")
       .then(async (response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
