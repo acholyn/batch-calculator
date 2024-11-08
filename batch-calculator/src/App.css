@@ -1,0 +1,20 @@
+.calculator__wrapper {
+  margin-inline: 8%;
+  display: grid;
+
+  h4,
+  .calculator__batch-size {
+    justify-self: center;
+  }
+
+  .calculator__table {
+    border-radius: 8px;
+
+    .calculator__table-header {
+      background-color: #15346f;
+      th {
+        text-align: center;
+      }
+    }
+  }
+}
