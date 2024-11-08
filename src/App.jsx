@@ -19,6 +19,20 @@ export default function App() {
       .then((data) => {
         console.log(data);
         setRecipes(data);
+        const params = new URLSearchParams(window.location.search);
+        const recipeFromUrl = params.get("recipe");
+        console.log(params, recipeFromUrl);
+
+        // If a recipe is specified in the URL and exists in our recipes, set it as selected
+        if (
+          recipeFromUrl &&
+          data[recipeFromUrl] &&
+          recipeFromUrl !== selectedRecipe
+        ) {
+          setSelectedRecipe(data[recipeFromUrl]);
+        } else {
+          setSelectedRecipe(null);
+        }
       })
       .catch((error) => {
         console.error(error.message);
